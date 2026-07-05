@@ -15,29 +15,52 @@ export default function App() {
   const [isHovered, setIsHovered] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
 
-  // Scroll Reveal Animations
+  // Active nav link scroll tracking
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.08
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const scrollHandler = () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 120) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollHandler();
+    return () => window.removeEventListener('scroll', scrollHandler);
+  }, []);
+
+  // Scroll Reveal Animations
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
           observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
-    const revealElements = document.querySelectorAll('.reveal');
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
     revealElements.forEach(el => observer.observe(el));
 
-    return () => {
-      revealElements.forEach(el => observer.unobserve(el));
-    };
+    // Immediately activate elements already in viewport (e.g. on page load)
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 40 && rect.bottom > 0) {
+        el.classList.add('active');
+        observer.unobserve(el);
+      }
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   // Custom Cursor mouse listener
@@ -89,6 +112,29 @@ export default function App() {
 
   return (
     <div className={isHovered ? 'cursor-hovered' : ''}>
+
+      {/* Fixed ambient background blobs */}
+      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 2, overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', width: '800px', height: '800px',
+          top: '-250px', left: '-200px',
+          background: 'radial-gradient(circle, rgba(0,242,254,0.18) 0%, transparent 65%)',
+          animation: 'bgBlob1 24s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '700px', height: '700px',
+          top: '30%', right: '-200px',
+          background: 'radial-gradient(circle, rgba(155,93,229,0.2) 0%, transparent 65%)',
+          animation: 'bgBlob2 30s ease-in-out infinite',
+        }} />
+        <div style={{
+          position: 'absolute', width: '600px', height: '600px',
+          bottom: '5%', left: '10%',
+          background: 'radial-gradient(circle, rgba(0,245,160,0.14) 0%, transparent 65%)',
+          animation: 'bgBlob3 38s ease-in-out infinite',
+        }} />
+      </div>
+
       {/* Custom Cursor circles */}
       {!isHidden && (
         <>
@@ -127,13 +173,13 @@ export default function App() {
       </header>
 
       {/* Main Sections with Scroll Reveal animations */}
-      <main>
-        <div className="reveal"><Hero /></div>
-        <div className="reveal"><Milestones /></div>
-        <div className="reveal"><Skills /></div>
-        <div className="reveal"><Projects /></div>
-        <div className="reveal"><Terminal /></div>
-        <div className="reveal"><Contact /></div>
+      <main style={{ position: 'relative', zIndex: 3 }}>
+        <Hero />
+        <Milestones />
+        <Projects />
+        <Skills />
+        <Terminal />
+        <Contact />
       </main>
     </div>
   );

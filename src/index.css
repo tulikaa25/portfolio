@@ -47,8 +47,10 @@ html {
 
 body {
   background-color: var(--bg-primary);
+  background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
   color: var(--text-primary);
-  font-family: var(--font-family-body); /* Updated to new body font variable */
+  font-family: var(--font-family-body);
   line-height: 1.6;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
@@ -626,20 +628,20 @@ section::before { /* Unique background pattern for sections */
 .terminal-wrapper {
   max-width: 800px;
   margin: 0 auto;
-  background: #080911;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px rgba(0,242,254,0.06), 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 .terminal-header {
-  background: #141624;
+  background: #161b22;
   padding: 0.75rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .terminal-buttons {
@@ -671,6 +673,7 @@ section::before { /* Unique background pattern for sections */
   min-height: 320px;
   max-height: 400px;
   overflow-y: auto;
+  background: #0d1117;
 }
 
 .terminal-output-line {
@@ -771,47 +774,42 @@ section::before { /* Unique background pattern for sections */
   section {
     padding: 4rem 0;
   }
-  
+
   .section-title {
     font-size: 1.75rem;
   }
-  
+
   .nav-links {
-    display: none; /* Can add burger menu or leave simple */
+    display: none;
   }
-  
-  .timeline::after {
-    left: 20px;
-  }
-  
-  .timeline-item {
-    width: 100%;
-    padding-left: 45px;
-    padding-right: 0;
-  }
-  
-  .timeline-item:nth-child(even) {
-    left: 0;
-  }
-  
-  .timeline-marker {
-    left: 12px !important;
-    right: auto !important;
+
+  .experience-body-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
 /* --- SCROLL REVEAL AND HOVER ANIMATIONS --- */
 
-.reveal {
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
   opacity: 0;
-  transform: translateY(35px);
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.reveal.active {
+.reveal        { transform: translateY(36px); }
+.reveal-left   { transform: translateX(-52px); }
+.reveal-right  { transform: translateX(52px); }
+.reveal-scale  { transform: scale(0.92); }
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Staggered Delay Utilities */
@@ -917,6 +915,149 @@ section::before { /* Unique background pattern for sections */
   .cursor-dot, .cursor-ring {
     display: none !important;
   }
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes bgBlob1 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50%      { transform: translate(70px, -90px); }
+}
+@keyframes bgBlob2 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50%      { transform: translate(-90px, 70px); }
+}
+@keyframes bgBlob3 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50%      { transform: translate(50px, 80px); }
+}
+
+@keyframes floatA {
+  0%, 100% { transform: translate(0px, 0px); }
+  25%  { transform: translate(12px, -18px); }
+  75%  { transform: translate(-8px, 10px); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translate(0px, 0px); }
+  30%  { transform: translate(-14px, 12px); }
+  70%  { transform: translate(10px, -16px); }
+}
+@keyframes floatC {
+  0%, 100% { transform: translate(0px, 0px); }
+  40%  { transform: translate(16px, 8px); }
+  80%  { transform: translate(-6px, -14px); }
+}
+@keyframes floatD {
+  0%, 100% { transform: translate(0px, 0px); }
+  20%  { transform: translate(-10px, -12px); }
+  60%  { transform: translate(14px, 6px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Stack hero on smaller screens */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide scrollbar on carousel */
+.projects-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- HERO SOCIAL LINKS --- */
+
+.hero-illus-col {
+  flex: 0 0 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 980px) {
+  .hero-illus-col { display: none; }
+}
+
+.hero-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.hero-social-link:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.08);
+  transform: translateY(-3px);
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.15);
+}
+
+/* --- PULSING GREEN DOT (OPEN TO WORK BADGE) --- */
+
+@keyframes pulse-dot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 245, 160, 0.5), 0 0 6px rgba(0, 245, 160, 0.4);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(0, 245, 160, 0), 0 0 10px rgba(0, 245, 160, 0.6);
+    opacity: 0.8;
+  }
+}
+
+/* --- TIMELINE MARKER GLOW ON HOVER --- */
+
+.timeline-marker {
+  box-shadow: 0 0 0 4px rgba(0, 242, 254, 0.1);
+  transition: var(--transition-smooth);
+}
+
+.timeline-item:hover .timeline-marker {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 0 5px rgba(0, 242, 254, 0.15), 0 0 18px rgba(0, 242, 254, 0.35);
+}
+
+/* --- SKILL BADGE POLISH --- */
+
+.skill-badge {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+  cursor: default;
+}
+
+.skill-badge:hover {
+  background: rgba(0, 242, 254, 0.08);
+  border-color: var(--accent-cyan);
+  color: var(--text-primary);
+  transform: translateY(-1px);
 }
 
 

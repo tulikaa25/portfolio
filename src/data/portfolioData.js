@@ -87,37 +87,6 @@ export const portfolioData = {
         "Integrated transactional email services via SendGrid to automate core platform triggers, improving buyer-publisher communication reliability."
       ]
     },
-    {
-      period: "2024",
-      role: "Cybersecurity & Law Enforcement Intern",
-      organization: "Madhya Pradesh Police",
-      location: "Bhopal, MP",
-      shortDescription: "Gained practical insights into cybersecurity and law enforcement operations through a specialized training program.",
-      highlights: [
-        "Participated in a selective cybersecurity training and awareness program, gaining hands-on insight into modern law enforcement technical operations and threat analysis."
-      ]
-    },
-    {
-      period: "2024 - 2025",
-      role: "Outreach Team Lead",
-      organization: "BitByBit Club, VIT Bhopal",
-      location: "Bhopal, MP",
-      shortDescription: "Led successful outreach initiatives and partnerships, organizing technical events for over 500 participants.",
-      highlights: [
-        "Led outreach and external partnerships for the official computer science club, organizing technical hackathons and workshops for 500+ participants."
-      ]
-    },
-    {
-      period: "2022 - 2026",
-      role: "B.Tech Student (Computer Science & Engineering)",
-      organization: "VIT Bhopal University",
-      location: "Bhopal, MP",
-      shortDescription: "Pursued a B.Tech in Computer Science, focusing on core CS fundamentals and maintaining a strong academic record.",
-      highlights: [
-        "Maintained a strong academic record with a cumulative CGPA of 8.71.",
-        "Specialized in core CS fundamentals: Data Structures & Algorithms, OOPs, operating systems, and DBMS."
-      ]
-    }
   ],
   projects: [
     {

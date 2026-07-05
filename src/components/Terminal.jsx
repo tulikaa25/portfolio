@@ -109,12 +109,12 @@ export default function Terminal() {
   return (
     <section id="terminal">
       <div className="container">
-        <h2 className="section-title">Developer Console</h2>
-        <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '2.5rem', marginTop: '-2rem' }}>
+        <h2 className="section-title reveal">Developer Console</h2>
+        <p className="reveal delay-100" style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '2.5rem', marginTop: '-2rem' }}>
           For command-line enthusiasts: interact directly with my resume data.
         </p>
 
-        <div className="terminal-wrapper" onClick={handleTerminalClick}>
+        <div className="terminal-wrapper reveal-scale delay-200" onClick={handleTerminalClick}>
           <div className="terminal-header">
             <div className="terminal-buttons">
               <span className="terminal-btn close"></span>
