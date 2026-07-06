@@ -25,7 +25,7 @@ const iconMap = {
 };
 
 const categoryAccents = [
-  'var(--accent-cyan)',
+  'var(--accent-orange)',
   'var(--accent-purple)',
   'var(--accent-pink)',
   'var(--accent-green)',
@@ -65,26 +65,17 @@ export default function Skills() {
               cursor: 'pointer',
               transition: 'var(--transition-smooth)',
               border: activeIdx === null
-                ? '1px solid var(--accent-cyan)'
+                ? '1px solid var(--accent-purple)'
                 : '1px solid var(--border-color)',
               background: activeIdx === null
-                ? 'rgba(0,242,254,0.1)'
+                ? 'rgba(155,93,229,0.1)'
                 : 'rgba(255,255,255,0.04)',
               color: activeIdx === null
-                ? 'var(--accent-cyan)'
+                ? 'var(--accent-purple)'
                 : 'var(--text-secondary)',
             }}
           >
             All
-            <span style={{
-              background: activeIdx === null ? 'rgba(0,242,254,0.2)' : 'rgba(255,255,255,0.08)',
-              borderRadius: '50px',
-              padding: '0 0.5rem',
-              fontSize: '0.75rem',
-              fontWeight: '700',
-            }}>
-              {skills.reduce((sum, c) => sum + c.items.length, 0)}
-            </span>
           </button>
 
           {/* Category tabs */}
@@ -114,15 +105,6 @@ export default function Skills() {
                   {iconMap[cat.icon] || iconMap.code}
                 </span>
                 {cat.category}
-                <span style={{
-                  background: isActive ? `rgba(${accentToRgb(accent)}, 0.2)` : 'rgba(255,255,255,0.08)',
-                  borderRadius: '50px',
-                  padding: '0 0.5rem',
-                  fontSize: '0.75rem',
-                  fontWeight: '700',
-                }}>
-                  {cat.items.length}
-                </span>
               </button>
             );
           })}
@@ -149,14 +131,6 @@ export default function Skills() {
                   </span>
                   <span style={{ fontWeight: '700', color: 'var(--text-primary)', fontSize: '1rem' }}>
                     {cat.category}
-                  </span>
-                  <span style={{
-                    marginLeft: 'auto',
-                    fontSize: '0.75rem',
-                    color: 'var(--text-muted)',
-                    fontFamily: 'var(--font-family-mono)',
-                  }}>
-                    {cat.items.length} skills
                   </span>
                 </div>
 
@@ -185,7 +159,7 @@ export default function Skills() {
 
 function accentToRgb(cssVar) {
   const map = {
-    'var(--accent-cyan)':   '0,242,254',
+    'var(--accent-orange)': '255,159,28',
     'var(--accent-purple)': '155,93,229',
     'var(--accent-pink)':   '231,29,54',
     'var(--accent-green)':  '0,245,160',

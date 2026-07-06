@@ -1,7 +1,32 @@
-import React from 'react';
-import Typewriter from 'typewriter-effect';
+import React, { useState, useEffect, useRef } from 'react';
 import { portfolioData } from '../data/portfolioData';
 import HeroIllustration from './HeroIllustration';
+
+function AnimatedCount({ value, duration = 1200, delay = 0 }) {
+  const [count, setCount] = useState(0);
+  const startRef = useRef(null);
+
+  useEffect(() => {
+    startRef.current = null;
+    let frame;
+    const step = (timestamp) => {
+      if (startRef.current === null) startRef.current = timestamp;
+      const progress = Math.min((timestamp - startRef.current) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * value));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+    const timeout = setTimeout(() => {
+      frame = requestAnimationFrame(step);
+    }, delay);
+    return () => {
+      clearTimeout(timeout);
+      cancelAnimationFrame(frame);
+    };
+  }, [value, duration, delay]);
+
+  return <>{count}</>;
+}
 
 export default function Hero() {
   const { personalInfo } = portfolioData;
@@ -16,7 +41,7 @@ export default function Hero() {
           <div style={{ flex: '1 1 0', minWidth: 0 }}>
 
             <p style={{
-              color: 'var(--accent-cyan)',
+              color: '#00f2fe',
               fontWeight: '600',
               textTransform: 'uppercase',
               letterSpacing: '2px',
@@ -42,49 +67,44 @@ export default function Hero() {
             }}>
               Hi, I'm{' '}
               <span className="gradient-text">
-                <Typewriter
-                  options={{ delay: 95 }}
-                  onInit={(typewriter) => {
-                    typewriter.typeString(personalInfo.name).start();
-                  }}
-                />
+                {personalInfo.name}
               </span>
             </h1>
-
-            <h2 style={{
-              fontSize: 'calc(1.2rem + 0.5vw)',
-              fontWeight: '600',
-              color: 'var(--text-secondary)',
-              marginBottom: '2.5rem',
-              animation: 'fadeSlideIn 0.6s ease both',
-              animationDelay: '0.4s',
-            }}>
-              {personalInfo.title}
-            </h2>
 
             <p style={{
               fontSize: 'calc(0.9rem + 0.2vw)',
               fontWeight: '700',
               color: 'var(--accent-orange)',
-              marginBottom: '1rem',
+              marginBottom: '1.75rem',
               letterSpacing: '0.5px',
               animation: 'fadeSlideIn 0.6s ease both',
-              animationDelay: '0.55s',
+              animationDelay: '0.4s',
             }}>
               {personalInfo.hookLine}
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: '600px', marginTop: '1rem', animation: 'fadeSlideIn 0.6s ease both', animationDelay: '0.7s' }}>
-              {personalInfo.bio.map((para, pIdx) => (
-                <p key={pIdx} style={{
-                  fontSize: '1.05rem',
-                  color: 'rgba(255, 255, 255, 0.72)',
-                  lineHeight: '1.7',
-                  margin: 0,
-                }}>
-                  {para}
-                </p>
-              ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: '600px', marginTop: '1rem', animation: 'fadeSlideIn 0.6s ease both', animationDelay: '0.55s' }}>
+              {personalInfo.bio.map((para, pIdx) => {
+                const company = portfolioData.milestones[0].organization;
+                const parts = para.split(company);
+                return (
+                  <p key={pIdx} style={{
+                    fontSize: '1.05rem',
+                    color: 'var(--text-secondary)',
+                    lineHeight: '1.7',
+                    margin: 0,
+                  }}>
+                    {parts.map((part, i) => (
+                      <React.Fragment key={i}>
+                        {part}
+                        {i < parts.length - 1 && (
+                          <span style={{ color: 'var(--accent-purple)', fontWeight: '700' }}>{company}</span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </p>
+                );
+              })}
             </div>
 
             {/* Social icon row */}
@@ -119,6 +139,25 @@ export default function Hero() {
                   </svg>
                 </a>
               </div>
+            </div>
+
+            {/* Coding profile stats */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.75rem', marginTop: '2rem', animation: 'fadeSlideIn 0.6s ease both', animationDelay: '1s' }}>
+              {[
+                { label: 'GitHub Repos', value: personalInfo.stats.githubRepos, color: '#e6edf3' },
+                { label: 'GitHub Contributions', value: personalInfo.stats.githubContributions, color: '#FFB347' },
+                { label: 'LeetCode Solved', value: personalInfo.stats.leetcodeSolved, color: '#FFA116' },
+                { label: 'GFG Solved', value: personalInfo.stats.gfgSolved, color: '#2F8D46' },
+              ].map(({ label, value, color }) => (
+                <div key={label}>
+                  <div style={{ fontSize: '1.4rem', fontWeight: '800', color, fontFamily: 'var(--font-family-mono)' }}>
+                    <AnimatedCount value={value} delay={1000} />+
+                  </div>
+                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    {label}
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>

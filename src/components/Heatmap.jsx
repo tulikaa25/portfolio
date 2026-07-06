@@ -11,10 +11,10 @@ const DAY_LABELS  = ['Mon', '', 'Wed', '', 'Fri', '', ''];
 
 const levelColors = [
   'rgba(255,255,255,0.05)',
-  'rgba(0,242,254,0.18)',
-  'rgba(0,242,254,0.42)',
-  'rgba(0,242,254,0.70)',
-  'rgba(0,242,254,0.95)',
+  'rgba(155,93,229,0.18)',
+  'rgba(155,93,229,0.42)',
+  'rgba(155,93,229,0.70)',
+  'rgba(155,93,229,0.95)',
 ];
 
 function seededRandom(seed) {
@@ -84,7 +84,7 @@ export default function Heatmap() {
           Coding Activity
         </span>
         <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-family-mono)' }}>
-          <span style={{ color: 'var(--accent-cyan)', fontWeight: '700' }}>{fakeContribs}</span> contributions in the last year
+          <span style={{ color: 'var(--accent-purple)', fontWeight: '700' }}>{fakeContribs}</span> contributions in the last year
         </span>
       </div>
 

@@ -3,9 +3,9 @@ import { portfolioData } from '../data/portfolioData';
 
 const cardAccents = [
   {
-    color: '#00f2fe',
-    placeholderGrad: 'linear-gradient(135deg, rgba(0, 242, 254, 0.14) 0%, rgba(0, 242, 254, 0.03) 100%)',
-    labelColor: 'rgba(0, 242, 254, 0.5)',
+    color: '#FF6B6B',
+    placeholderGrad: 'linear-gradient(135deg, rgba(255, 107, 107, 0.14) 0%, rgba(255, 107, 107, 0.03) 100%)',
+    labelColor: 'rgba(255, 107, 107, 0.5)',
   },
   {
     color: '#00f5a0',
@@ -13,57 +13,11 @@ const cardAccents = [
     labelColor: 'rgba(0, 245, 160, 0.5)',
   },
   {
-    color: '#9b5de5',
-    placeholderGrad: 'linear-gradient(135deg, rgba(155, 93, 229, 0.14) 0%, rgba(155, 93, 229, 0.03) 100%)',
-    labelColor: 'rgba(155, 93, 229, 0.5)',
+    color: '#4CC9F0',
+    placeholderGrad: 'linear-gradient(135deg, rgba(76, 201, 240, 0.14) 0%, rgba(76, 201, 240, 0.03) 100%)',
+    labelColor: 'rgba(76, 201, 240, 0.5)',
   },
 ];
-
-function ProjectPlaceholder({ title, accent }) {
-  return (
-    <div style={{
-      height: '180px',
-      background: accent.placeholderGrad,
-      borderBottom: '1px solid var(--border-color)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-    }}>
-      <span style={{
-        fontWeight: '800',
-        fontSize: '1.1rem',
-        color: accent.labelColor,
-        letterSpacing: '2px',
-        textTransform: 'uppercase',
-        fontFamily: 'var(--font-family-mono)',
-        zIndex: 1,
-        textAlign: 'center',
-        padding: '0 1rem',
-      }}>
-        {title}
-      </span>
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: `radial-gradient(${accent.color}18 1px, transparent 1px)`,
-        backgroundSize: '18px 18px',
-      }} />
-    </div>
-  );
-}
-
-function ProjectImage({ src, title, accent }) {
-  const [error, setError] = useState(false);
-  if (error || !src) return <ProjectPlaceholder title={title} accent={accent} />;
-  return (
-    <img src={src} alt={title} onError={() => setError(true)} style={{
-      width: '100%', height: '180px', objectFit: 'cover',
-      borderBottom: '1px solid var(--border-color)'
-    }} />
-  );
-}
 
 export default function Projects() {
   const { projects } = portfolioData;
@@ -78,9 +32,12 @@ export default function Projects() {
   const updateState = () => {
     const el = scrollRef.current;
     if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
     setCanPrev(el.scrollLeft > 8);
-    setCanNext(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
-    const idx = Math.round(el.scrollLeft / (CARD_WIDTH + GAP));
+    setCanNext(el.scrollLeft < maxScroll - 8);
+    const idx = el.scrollLeft >= maxScroll - 8
+      ? projects.length - 1
+      : Math.round(el.scrollLeft / (CARD_WIDTH + GAP));
     setActiveIdx(Math.min(idx, projects.length - 1));
   };
 
@@ -135,7 +92,7 @@ export default function Projects() {
                   transition: 'var(--transition-smooth)',
                   flexShrink: 0,
                 }}
-                onMouseEnter={e => { if (canPrev) e.currentTarget.style.borderColor = 'var(--accent-cyan)'; }}
+                onMouseEnter={e => { if (canPrev) e.currentTarget.style.borderColor = 'var(--accent-purple)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = canPrev ? 'var(--border-color)' : 'var(--border-dark)'; }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -148,16 +105,16 @@ export default function Projects() {
                 disabled={!canNext}
                 style={{
                   width: '40px', height: '40px', borderRadius: '50%',
-                  border: `1px solid ${canNext ? 'var(--accent-cyan)' : 'var(--border-dark)'}`,
-                  background: canNext ? 'rgba(0,242,254,0.08)' : 'transparent',
-                  color: canNext ? 'var(--accent-cyan)' : 'var(--text-muted)',
+                  border: `1px solid ${canNext ? 'var(--accent-purple)' : 'var(--border-dark)'}`,
+                  background: canNext ? 'rgba(155,93,229,0.08)' : 'transparent',
+                  color: canNext ? 'var(--accent-purple)' : 'var(--text-muted)',
                   cursor: canNext ? 'pointer' : 'not-allowed',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   transition: 'var(--transition-smooth)',
                   flexShrink: 0,
                 }}
-                onMouseEnter={e => { if (canNext) e.currentTarget.style.background = 'rgba(0,242,254,0.15)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = canNext ? 'rgba(0,242,254,0.08)' : 'transparent'; }}
+                onMouseEnter={e => { if (canNext) e.currentTarget.style.background = 'rgba(155,93,229,0.15)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = canNext ? 'rgba(155,93,229,0.08)' : 'transparent'; }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
@@ -210,7 +167,19 @@ export default function Projects() {
                       display: 'flex', flexDirection: 'column',
                       borderRight: '1px solid var(--border-color)',
                     }}>
-                      <ProjectImage src={project.thumbnail} title={project.title} accent={accent} />
+                      <div style={{
+                        height: '180px',
+                        background: accent.placeholderGrad,
+                        borderBottom: '1px solid var(--border-color)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '0 1.25rem',
+                      }}>
+                        <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: accent.color, letterSpacing: '0.3px', margin: 0, textAlign: 'center' }}>
+                          {project.title}
+                        </h3>
+                      </div>
                       <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flexGrow: 1 }}>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                           {project.tech.map((tag, tIdx) => (
@@ -244,21 +213,29 @@ export default function Projects() {
                       </p>
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginTop: '0.25rem' }}>
-                        {[
-                          { label: 'Challenge', text: project.challenge, color: 'var(--accent-pink)' },
-                          { label: 'Solution', text: project.solution, color: accent.color },
-                          { label: 'Impact',    text: project.impact,    color: 'var(--accent-green)' },
-                        ].map(({ label, text, color }) => (
-                          <div key={label} style={{
-                            padding: '0.75rem',
-                            borderRadius: '8px',
-                            background: 'rgba(255,255,255,0.02)',
-                            border: '1px solid var(--border-color)',
-                          }}>
-                            <span style={{ color, fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', fontSize: '0.7rem' }}>{label}</span>
-                            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5', margin: '0.2rem 0 0', fontSize: '0.83rem' }}>{text}</p>
-                          </div>
-                        ))}
+                        <div style={{
+                          padding: '0.75rem',
+                          borderRadius: '8px',
+                          background: 'rgba(255,255,255,0.02)',
+                          border: '1px solid var(--border-color)',
+                        }}>
+                          <span style={{ color: 'var(--accent-pink)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', fontSize: '0.7rem' }}>Challenge</span>
+                          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5', margin: '0.2rem 0 0', fontSize: '0.83rem' }}>{project.challenge}</p>
+                        </div>
+
+                        <div style={{
+                          padding: '0.75rem',
+                          borderRadius: '8px',
+                          background: 'rgba(255,255,255,0.02)',
+                          border: '1px solid var(--border-color)',
+                        }}>
+                          <span style={{ color: accent.color, fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', fontSize: '0.7rem' }}>Solution</span>
+                          <ul style={{ color: 'var(--text-secondary)', lineHeight: '1.5', margin: '0.35rem 0 0', paddingLeft: '1.1rem', fontSize: '0.83rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+                            {project.solution.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
 
@@ -268,13 +245,15 @@ export default function Projects() {
             })}
           </div>
 
-          {/* Right fade gradient */}
+          {/* Right fade gradient — only shown while there's more to scroll to */}
           <div style={{
             position: 'absolute',
             top: 0, right: 0,
             width: '120px', height: 'calc(100% - 1.5rem)',
             background: 'linear-gradient(to left, var(--bg-primary) 0%, transparent 100%)',
             pointerEvents: 'none',
+            opacity: canNext ? 1 : 0,
+            transition: 'opacity 0.3s ease',
           }} />
         </div>
 
@@ -288,7 +267,7 @@ export default function Projects() {
                 width: idx === activeIdx ? '24px' : '8px',
                 height: '8px',
                 borderRadius: '4px',
-                background: idx === activeIdx ? 'var(--accent-cyan)' : 'var(--border-color)',
+                background: idx === activeIdx ? 'var(--accent-purple)' : 'var(--border-color)',
                 border: 'none',
                 cursor: 'pointer',
                 padding: 0,

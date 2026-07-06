@@ -3,7 +3,7 @@ import Hero from './components/Hero';
 import Milestones from './components/Milestones';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Terminal from './components/Terminal';
+import CoCurricular from './components/CoCurricular';
 import Contact from './components/Contact';
 import { portfolioData } from './data/portfolioData';
 
@@ -88,7 +88,7 @@ export default function App() {
 
     const updateHoverListeners = () => {
       const interactiveElements = document.querySelectorAll(
-        'a, button, input, textarea, select, .btn, .glass-card, .timeline-content, .terminal-header, .terminal-body'
+        'a, button, input, textarea, select, .btn, .glass-card, .timeline-content'
       );
       interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', addHoverClass);
@@ -118,7 +118,7 @@ export default function App() {
         <div style={{
           position: 'absolute', width: '800px', height: '800px',
           top: '-250px', left: '-200px',
-          background: 'radial-gradient(circle, rgba(0,242,254,0.18) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(155,93,229,0.18) 0%, transparent 65%)',
           animation: 'bgBlob1 24s ease-in-out infinite',
         }} />
         <div style={{
@@ -163,9 +163,9 @@ export default function App() {
             <ul className="nav-links">
               <li><a href="#hero">About</a></li>
               <li><a href="#experience">Experience</a></li>
-              <li><a href="#skills">Skills</a></li>
               <li><a href="#projects">Projects</a></li>
-              <li><a href="#terminal">Console</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#cocurricular">Co-Curricular</a></li>
               <li><a href="#contact">Connect</a></li>
             </ul>
           </nav>
@@ -178,7 +178,7 @@ export default function App() {
         <Milestones />
         <Projects />
         <Skills />
-        <Terminal />
+        <CoCurricular />
         <Contact />
       </main>
     </div>

@@ -7,12 +7,12 @@ export default function HeroIllustration() {
         viewBox="0 0 380 400"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ width: '100%', height: 'auto', overflow: 'visible', filter: 'drop-shadow(0 0 28px rgba(0,242,254,0.12))' }}
+        style={{ width: '100%', height: 'auto', overflow: 'visible', filter: 'drop-shadow(0 0 28px rgba(155,93,229,0.12))' }}
       >
         <defs>
           <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#00f2fe" stopOpacity="0.07" />
-            <stop offset="100%" stopColor="#00f2fe" stopOpacity="0" />
+            <stop offset="0%" stopColor="#9b5de5" stopOpacity="0.07" />
+            <stop offset="100%" stopColor="#9b5de5" stopOpacity="0" />
           </radialGradient>
         </defs>
 
@@ -25,9 +25,9 @@ export default function HeroIllustration() {
           {/* Screen outer frame */}
           <rect x="18" y="18" width="344" height="218" rx="12"
             fill="#0d1117" stroke="#30363d" strokeWidth="1.5" />
-          {/* Cyan accent glow on screen border */}
+          {/* Purple accent glow on screen border */}
           <rect x="18" y="18" width="344" height="218" rx="12"
-            fill="none" stroke="rgba(0,242,254,0.22)" strokeWidth="0.8" />
+            fill="none" stroke="rgba(155,93,229,0.22)" strokeWidth="0.8" />
 
           {/* Screen content bg */}
           <rect x="30" y="30" width="320" height="196" rx="7" fill="#080c10" />
@@ -47,17 +47,17 @@ export default function HeroIllustration() {
 
           {/* ── Code lines ── */}
           <text x="44" y="76" fontFamily="monospace" fontSize="9.5">
-            <tspan fill="#9b5de5">from</tspan><tspan fill="#c9d1d9"> langchain </tspan><tspan fill="#9b5de5">import</tspan><tspan fill="#00f2fe"> FAISS</tspan>
+            <tspan fill="#9b5de5">from</tspan><tspan fill="#c9d1d9"> langchain </tspan><tspan fill="#9b5de5">import</tspan><tspan fill="#9b5de5"> FAISS</tspan>
           </text>
           <text x="44" y="90" fontFamily="monospace" fontSize="9.5">
-            <tspan fill="#9b5de5">from</tspan><tspan fill="#c9d1d9"> openai </tspan><tspan fill="#9b5de5">import</tspan><tspan fill="#00f2fe"> Embeddings</tspan>
+            <tspan fill="#9b5de5">from</tspan><tspan fill="#c9d1d9"> openai </tspan><tspan fill="#9b5de5">import</tspan><tspan fill="#9b5de5"> Embeddings</tspan>
           </text>
 
           <text x="44" y="108" fontFamily="monospace" fontSize="9.5">
             <tspan fill="#6a737d"># Build vector knowledge store</tspan>
           </text>
           <text x="44" y="122" fontFamily="monospace" fontSize="9.5">
-            <tspan fill="#00f5a0">db</tspan><tspan fill="#c9d1d9"> = FAISS.</tspan><tspan fill="#00f2fe">from_documents</tspan><tspan fill="#c9d1d9">(</tspan>
+            <tspan fill="#00f5a0">db</tspan><tspan fill="#c9d1d9"> = FAISS.</tspan><tspan fill="#9b5de5">from_documents</tspan><tspan fill="#c9d1d9">(</tspan>
           </text>
           <text x="54" y="136" fontFamily="monospace" fontSize="9.5">
             <tspan fill="#c9d1d9">docs, </tspan><tspan fill="#00f5a0">embeddings</tspan>
@@ -70,14 +70,14 @@ export default function HeroIllustration() {
             <tspan fill="#6a737d"># Semantic retrieval</tspan>
           </text>
           <text x="44" y="182" fontFamily="monospace" fontSize="9.5">
-            <tspan fill="#00f5a0">result</tspan><tspan fill="#c9d1d9"> = db.</tspan><tspan fill="#00f2fe">similarity_search</tspan><tspan fill="#c9d1d9">(</tspan>
+            <tspan fill="#00f5a0">result</tspan><tspan fill="#c9d1d9"> = db.</tspan><tspan fill="#9b5de5">similarity_search</tspan><tspan fill="#c9d1d9">(</tspan>
           </text>
           <text x="54" y="196" fontFamily="monospace" fontSize="9.5">
             <tspan fill="#c9d1d9">query=</tspan><tspan fill="#e6895a">prompt</tspan>
           </text>
 
           {/* Blinking cursor */}
-          <rect x="44" y="206" width="6" height="11" rx="1" fill="#00f2fe">
+          <rect x="44" y="206" width="6" height="11" rx="1" fill="#9b5de5">
             <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite" />
           </rect>
 
@@ -120,13 +120,13 @@ export default function HeroIllustration() {
         {/* AI — bottom-right */}
         <g transform="translate(394, 280)"
           style={{ animation: 'floatC 15s ease-in-out -6s infinite', transformBox: 'fill-box', transformOrigin: 'center' }}>
-          <circle cx="0" cy="0" r="26" fill="rgba(0,242,254,0.1)" stroke="rgba(0,242,254,0.4)" strokeWidth="1.5" />
-          <text x="0" y="4" fontSize="12" fontFamily="monospace" fill="#00f2fe"
+          <circle cx="0" cy="0" r="26" fill="rgba(155,93,229,0.1)" stroke="rgba(155,93,229,0.4)" strokeWidth="1.5" />
+          <text x="0" y="4" fontSize="12" fontFamily="monospace" fill="#9b5de5"
             textAnchor="middle" fontWeight="800">AI</text>
-          <circle cx="-8" cy="-10" r="2.5" fill="#00f2fe" opacity="0.4" />
-          <circle cx="8" cy="-10" r="2.5" fill="#00f2fe" opacity="0.4" />
-          <circle cx="-8" cy="13" r="2.5" fill="#00f2fe" opacity="0.4" />
-          <circle cx="8" cy="13" r="2.5" fill="#00f2fe" opacity="0.4" />
+          <circle cx="-8" cy="-10" r="2.5" fill="#9b5de5" opacity="0.4" />
+          <circle cx="8" cy="-10" r="2.5" fill="#9b5de5" opacity="0.4" />
+          <circle cx="-8" cy="13" r="2.5" fill="#9b5de5" opacity="0.4" />
+          <circle cx="8" cy="13" r="2.5" fill="#9b5de5" opacity="0.4" />
         </g>
 
         {/* Lambda — bottom-left */}
@@ -145,7 +145,7 @@ export default function HeroIllustration() {
 
         {/* Small floating code symbols (very faint) */}
         <text x="125" y="13" fontSize="10" fontFamily="monospace"
-          fill="rgba(0,242,254,0.28)"
+          fill="rgba(155,93,229,0.28)"
           style={{ animation: 'floatA 18s ease-in-out -4s infinite', transformBox: 'fill-box', transformOrigin: 'center' }}>
           {'{ }'}
         </text>

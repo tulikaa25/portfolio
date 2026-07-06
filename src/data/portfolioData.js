@@ -6,11 +6,10 @@ export const portfolioData = {
     hookLine: "Building robust backends • Automating the tedious • Engineering the future with GenAI",
     bio: [
       "I look at software engineering through a lens of continuous evolution. Starting with a strong foundation in backend systems, databases, and full-stack development, I quickly realized that the best developers don't just stick to a fixed stack—they adapt.",
-      "Today, my expertise spans creating production-ready applications, building GenAI integrations, and automating workflows. I am passionate about exploring new architectural paradigms, tweaking LLMs, and turning complex technical challenges into seamless user experiences."
+      "Today, my expertise spans creating production-ready applications, building GenAI integrations, and automating workflows — currently as a Software Development Engineer at BrightRays. I am passionate about exploring new architectural paradigms, tweaking LLMs, and turning complex technical challenges into seamless user experiences."
     ],
     location: "Prayagraj, Uttar Pradesh, India",
     email: "tulikaa257@gmail.com",
-    phone: "+91-8887550142",
     resumeLink: "/resume.pdf", // Resolves to public/resume.pdf
     socials: {
       
@@ -18,6 +17,13 @@ export const portfolioData = {
       linkedin: "https://linkedin.com/in/tulikabasu",
       leetcode: "https://leetcode.com/tulikabasu",
       geeksforgeeks: "https://geeksforgeeks.org/user/tulikabasu"
+    },
+    // Dummy placeholder counts — replace with your real profile stats
+    stats: {
+      githubRepos: 24,
+      githubContributions: 480,
+      leetcodeSolved: 350,
+      gfgSolved: 120,
     }
   },
   skills: [
@@ -76,15 +82,33 @@ export const portfolioData = {
   milestones: [
     {
       period: "March 2026 - Present",
-      role: "Automation & Full Stack Intern",
       organization: "BrightRays",
       location: "Noida, UP (Remote)",
-      shortDescription: "Automated content workflows and built a RAG-based customer support system, significantly reducing manual overhead and enhancing communication.",
-      highlights: [
-        "Architected an end-to-end content automation workflow using n8n, SERP API, and LLMs, reducing research, SEO filtering, formatting, and generation turnaround time by 90%.",
-        "Developed a daily automated auditing pipeline validating 5+ SEO parameters and publisher categories using LLMs, cutting admin overhead significantly.",
-        "Implemented a RAG-based hybrid customer support system featuring Supabase Realtime, pgvector, conversation status tracking, and secure file uploads via Supabase Buckets.",
-        "Integrated transactional email services via SendGrid to automate core platform triggers, improving buyer-publisher communication reliability."
+      roles: [
+        {
+          title: "Software Development Engineer",
+          period: "June 2026 - Present",
+          // Placeholder — replace with your real FTE responsibilities
+          shortDescription: "TODO: Add a short description of your Software Development Engineer responsibilities.",
+          tech: ["TODO: FTE tech stack"],
+          highlights: [
+            "TODO: Add your first major achievement or responsibility as a full-time SDE.",
+            "TODO: Add another key contribution — e.g. a system you own or shipped.",
+            "TODO: Add a third highlight, ideally with a measurable impact/metric."
+          ]
+        },
+        {
+          title: "Automation & Full Stack Intern",
+          period: "March 2026 - June 2026",
+          shortDescription: "Automated content workflows and built a RAG-based customer support system, significantly reducing manual overhead and enhancing communication.",
+          tech: ["n8n", "SERP API", "LLMs", "Supabase", "pgvector", "SendGrid"],
+          highlights: [
+            "Architected an end-to-end content automation workflow using n8n, SERP API, and LLMs, reducing research, SEO filtering, formatting, and generation turnaround time by 90%.",
+            "Developed a daily automated auditing pipeline validating 5+ SEO parameters and publisher categories using LLMs, cutting admin overhead significantly.",
+            "Implemented a RAG-based hybrid customer support system featuring Supabase Realtime, pgvector, conversation status tracking, and secure file uploads via Supabase Buckets.",
+            "Integrated transactional email services via SendGrid to automate core platform triggers, improving buyer-publisher communication reliability."
+          ]
+        }
       ]
     },
   ],
@@ -93,11 +117,13 @@ export const portfolioData = {
       id: "multimodal-rag",
       title: "Multimodal RAG System",
       tech: ["LangChain", "CLIP Model", "FAISS", "Google GenAI", "PyMuPDF"],
-      thumbnail: "/project-images/multimodal-rag.png", // Placeholder for image
       description: "A Retrieval-Augmented Generation pipeline capable of parsing complex PDF documents containing both text and embedded images, performing semantic search, and generating grounded responses.",
       challenge: "Extracting and semantically searching information from complex PDF documents containing both text and images, and generating accurate, grounded responses without hallucinations.",
-      solution: "Developed a RAG pipeline using PyMuPDF for text/image extraction and CLIP embeddings for a unified FAISS vector store. Integrated Google Generative AI with grounded system prompts.",
-      impact: "Enabled efficient, cross-modal semantic search and accurate, citation-backed response generation from complex documents.",
+      solution: [
+        "Developed a RAG pipeline using PyMuPDF for text/image extraction and CLIP embeddings for a unified FAISS vector store.",
+        "Integrated Google Generative AI with grounded system prompts.",
+        "Enabled efficient, cross-modal semantic search and accurate, citation-backed response generation from complex documents."
+      ],
       github: "https://github.com/tulikabasu/Multimodal-RAG-System",
       demo: "#"
     },
@@ -105,11 +131,14 @@ export const portfolioData = {
       id: "agriweather-alert",
       title: "LLM-Driven AgriWeather Alert System",
       tech: ["SpringBoot", "Twilio API", "LLM Integration", "MySQL", "Scheduler"],
-      thumbnail: "/project-images/agriweather.png", // Placeholder for image
       description: "An automated SMS, WhatsApp, and voice-call notification system providing localized bilingual weather forecasts and AI-generated agricultural tips for farmers.",
       challenge: "Delivering timely, localized, and easily understandable agricultural weather alerts to farmers, including those with limited digital literacy.",
-      solution: "Built Spring Boot scheduling jobs to fetch weather data, used LLMs for bilingual summarization (Hindi/English), and integrated Twilio for SMS, WhatsApp, and voice-call delivery.",
-      impact: "Improved accessibility of critical weather information and agricultural tips, empowering farmers to make informed decisions.",
+      solution: [
+        "Built Spring Boot scheduling jobs to fetch weather data.",
+        "Used LLMs for bilingual summarization (Hindi/English).",
+        "Integrated Twilio for SMS, WhatsApp, and voice-call delivery.",
+        "Improved accessibility of critical weather information and agricultural tips, empowering farmers to make informed decisions."
+      ],
       github: "https://github.com/tulikabasu/AgriWeather-Alert-System",
       demo: "#"
     },
@@ -117,11 +146,14 @@ export const portfolioData = {
       id: "blood-bank-mgmt",
       title: "Blood Bank Management System",
       tech: ["Node.js", "Express.js", "MongoDB", "JWT Auth", "QR Validation"],
-      thumbnail: "/project-images/blood-bank.png", // Placeholder for image
       description: "A comprehensive backend system for digitizing blood donation operations, donor screening, slot scheduling, and inventory checks.",
       challenge: "Streamlining blood donation processes, ensuring secure donor management, efficient slot scheduling, and real-time inventory tracking.",
-      solution: "Designed donor eligibility logic, implemented JWT-based role authorization, and created a capacity-aware slot booking system with secure QR-code generation.",
-      impact: "Digitized and optimized blood bank operations, improving efficiency, security, and donor experience.",
+      solution: [
+        "Designed donor eligibility logic.",
+        "Implemented JWT-based role authorization.",
+        "Created a capacity-aware slot booking system with secure QR-code generation.",
+        "Digitized and optimized blood bank operations, improving efficiency, security, and donor experience."
+      ],
       github: "https://github.com/tulikabasu/Blood-Bank-Management-System",
       demo: "#"
     }
@@ -130,22 +162,30 @@ export const portfolioData = {
     {
       title: "Oracle Cloud Infrastructure 2025 Generative AI Professional",
       issuer: "Oracle",
-      year: "2025"
+      year: "2025",
+      // link: "https://credly.com/badges/your-badge-id", // Verification/credential URL
+      // image: "/certifications/oci-genai.png", // Place file in public/certifications/
     },
     {
       title: "Smart India Hackathon (SIH) 2024 Finalist",
       issuer: "College Team Lead",
-      year: "2024"
+      year: "2024",
+      // link: "",
+      // image: "/certifications/sih-2024.png",
     },
     {
       title: "Open Source Contributor",
       issuer: "Various Repos (GSSoC / Hacktoberfest)",
-      year: "2024, 2025"
+      year: "2024, 2025",
+      // link: "",
+      // image: "/certifications/opensource.png",
     },
     {
       title: "1st Place - Foragers 2.0 (VIT Bhopal Annual Fest)",
       issuer: "VIT Bhopal",
-      year: "2023"
+      year: "2023",
+      // link: "",
+      // image: "/certifications/foragers-2.0.png",
     }
   ]
 };
