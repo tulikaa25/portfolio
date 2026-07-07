@@ -4,6 +4,7 @@ import Milestones from './components/Milestones';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import CoCurricular from './components/CoCurricular';
+import Terminal from './components/Terminal';
 import Contact from './components/Contact';
 import { portfolioData } from './data/portfolioData';
 
@@ -88,7 +89,7 @@ export default function App() {
 
     const updateHoverListeners = () => {
       const interactiveElements = document.querySelectorAll(
-        'a, button, input, textarea, select, .btn, .glass-card, .timeline-content'
+        'a, button, input, textarea, select, .btn, .glass-card, .timeline-content, .terminal-header, .terminal-body'
       );
       interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', addHoverClass);
@@ -166,6 +167,7 @@ export default function App() {
               <li><a href="#projects">Projects</a></li>
               <li><a href="#skills">Skills</a></li>
               <li><a href="#cocurricular">Co-Curricular</a></li>
+              <li><a href="#terminal">Console</a></li>
               <li><a href="#contact">Connect</a></li>
             </ul>
           </nav>
@@ -179,6 +181,7 @@ export default function App() {
         <Projects />
         <Skills />
         <CoCurricular />
+        <Terminal />
         <Contact />
       </main>
     </div>
